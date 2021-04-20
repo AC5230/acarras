@@ -1,7 +1,9 @@
 /*jslint node: true */
 "use strict";
 
+require('seedrandom');
 // Seed math
+Math.seedrandom('' + Date.now());
 
 exports.random = x => {
     return x * Math.random();
@@ -95,7 +97,80 @@ exports.chooseChance = (...arg) => {
 
 exports.chooseBotName = () => {
     return exports.choose([
-        'BOT'
+        'Alice',
+        'Bob',
+        'Carmen',
+        'David',
+        'Edith',
+        'Freddy',
+        'Gustav',
+        'Helga',
+        'Janet',
+        'Lorenzo',
+        '[Mg] MasterOv Yt',
+        'Mary',
+        'Nora',
+        'Olivia',
+        'Peter',
+        'Queen',
+        'Roger',
+        'Suzanne',
+        'Tommy',
+        'Ursula',
+        'Vincent',
+        'Wilhelm',
+        'Xerxes',
+        'Yvonne',
+        'Zachary',
+        'Alpha',
+        'Beta',
+        'Gamma',
+        'Delta',
+        'Epsilon',
+        'Zeta',
+        'Eta',
+        'Theta',
+        'Iota',
+        'Kappa',
+        'Lambda',
+        'Mu',
+        'Nu',
+        'Xi',
+        'Omicron',
+        'Pi',
+        'Rho',
+        'Sigma',
+        'Tau',
+        'Upsilon',
+         'Phi',
+        'Chi',
+        'Psi',
+        'Omega',
+        'Alfa',
+        'Bravo',
+        'Charlie',
+        'Delta',
+        'Echo',
+        'Foxtrot',
+        'Hotel',
+        'India',
+        'Juliet',
+        'Kilo',
+        'Lima',
+        'Mike',
+        'November',
+        'Oscar',
+        'Papa',
+        'Quebec',
+        'Romeo',
+        'Sierra',
+        'Tango',
+        'Uniform',
+        'Victor',
+        'Whiskey',
+        'X-Ray',
+        'Yankee',
+        'Zulu',
     ]);
 };
 
@@ -103,16 +178,32 @@ exports.chooseBossName = (code, n) => {
     switch (code) {
     case 'a':
     return exports.chooseN([
-        'Elite Boss',
-        'Elite Boss',
-        'Elite Boss',
-        'Elite Boss',
-        'Elite Boss',
-        'Elite Boss'
+        'Archimedes',
+        'Akilina',
+        'Anastasios',
+        'Athena',
+        'Alkaios',
+        'Amyntas',
+        'Aniketos',
+        'Artemis',
+        'Anaxagoras',
+        'Apollon',
     ], n);
     case 'castle':
     return exports.chooseN([
-        'Rouge Palisade'
+        'Berezhany',
+        'Lutsk',
+        'Dobromyl',
+        'Akkerman',
+        'Palanok',
+        'Zolochiv',
+        'Palanok',
+        'Mangup',
+        'Olseko',
+        'Brody',
+        'Isiaslav',
+        'Kaffa',
+        'Bilhorod',
     ], n);
     default: return 'God';
     }

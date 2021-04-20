@@ -1,5 +1,8 @@
-/*jslint esversion: 6*/
-/*function checkEndian() {
+3/*jslint esversion: 6*/
+/*global require, exports, console*/
+/*jshint -W097*/
+"use strict";
+function checkEndian() {
     var arrayBuffer = new ArrayBuffer(2);
     var uint8Array = new Uint8Array(arrayBuffer);
     var uint16array = new Uint16Array(arrayBuffer);
@@ -9,7 +12,8 @@
     if(uint16array[0] === 0xAABB) return 1;
     else throw new Error("Something crazy just happened");
 }
-var isBigEndian = new Uint8Array(new Uint32Array([0x12345678]).buffer)[0] === 0x12;
+
+/*var isBigEndian = new Uint8Array(new Uint32Array([0x12345678]).buffer)[0] === 0x12;
 var isLittleEndian = new Uint8Array(new Uint32Array([0x12345678]).buffer)[0] === 0x78;*/
 
 exports.encode = (() => {
@@ -65,7 +69,7 @@ exports.encode = (() => {
         default: throw new Error('Unknown encoding type.');
         }
     };
-    var findType = value => {        
+    var findType = (value) => {        
         if (typeof value === 'string') {            
             for (var i = 0; i < value.length; i++) {
                 if (value.charCodeAt(i) > 255) return 'String16';
@@ -73,7 +77,7 @@ exports.encode = (() => {
             return 'String8';
         }
         if (typeof value === 'boolean') return 'Uint8';
-        if (typeof value !== 'number') { console.log(value); throw new Error('Unencodable data type'); }
+        if (typeof value !== 'number') { throw new Error('Unencodable data type'); }
         if (value != Math.round(value)) return 'Float32';
         if (value < 0) {
             if (value >= -256) return 'Sint8';

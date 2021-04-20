@@ -9,7 +9,7 @@ goog.require('goog.structs.PriorityQueue');
 goog.require('goog.structs.QuadTree');
 
 // Import game settings.
-const c = require('./config.json');
+const c = require('../../config.json');
 
 // Import utilities.
 const util = require('./lib/util');
@@ -26,6 +26,189 @@ Array.prototype.remove = index => {
         return r;
     }
 };
+
+// Define player keys
+var keys = [
+    'k', 'l', 'testk', 'testl', 'X',
+	// ACarras Development Team
+		// Old
+		'ACdevAC',
+		'Moouse',
+		'KoleOBlack',
+		'DANKMEMES',
+		'AmpdotIsADot',
+		// Current
+		'acarrasDEV6enpB5xbId7iLKikszYVJ8F0CVarYy8W1R4pNAL58GyR2SMU2X2Onc', // AC
+		'acarrasDEVDemKD2qsJyAdeF67jQnjefS3C9tqhHsyqIOIcAWrMY8p8aLhxUy8X3',
+		'acarrasDEVHixPh3Ng4FuNH1jKxaIf6IJMX95S01muyyTjVbQOalRGe5GaHJvtXv',
+		'acarrasDEVbRxZzz0xLjOzjxUC2aumUGnEi2f0vahyG3oDYhAnfO9ElVS0CtYDh1',
+		'acarrasDEVmxln58wGHbnjWdq2uc9GpESddspR8B4iNM8NEJyDRJPAQhLU3r1yTD',
+		'acarrasDEVPOjo42EQ58JsiJpJ6toNR7RXqFZ6Kvpv3ZcBUZaokumdNN3Ka7Fc8S',
+		'acarrasDEVPdKMBb5tfMGdK00b3Q5i9pqxZKLm9rW9k74BaAvgc3MD8MLSyRkYgv',
+		'acarrasDEV19vuyrU5NV7ND6xAlBwcYAgwoAufMFIH675j9Ws7aOXANKFN2NBu1J',
+		'acarrasDEVFnbDWAQHlQtkB2BPZOKvTQxO5pXCzfX4Rcew4h2E3N7g9x70GXI7Rz',
+		'acarrasDEVTmu4JMxHM3py4yAKwBrHjQAtjF9f88OiAhLWFms73BQb4ldmqr6oh3',
+    // Focus Group
+        'HKib09Ep3hIcwFXpiCj5iEkpLBN88HQ22hiFqg5alcxn4AYl6VcsPFTqMvllLt1D', // Parodia
+        'n9hx8iQH8453dWQpdDvJcAvPzQej80xQz86TxuYaJ8CaOr4hEH2zHPlSeayVPjFZ', // SGM
+        '5piWwi06VXdEuOsz1rbcHiglurbaYIPtslIgE0NNMGQgNcqErdJ4kUVYpDJsRlVC', // Aznaft
+        'q80UgWYIQVM2oZW5iQO6VRdLcOTuHkSgUx4U7NN8z76Ltgj7gVc6tSWvmpPkRUGH', // Licht
+        '9zcVcKxiv60ZoBr6CaO9ecjR3i0Mj9yx4Qgt9IGwzxps8Q5ge1GQJiYe59GBxKip', // Tenderlicious
+        'M67ZAZIgboiBcUtcKoHOuwXlQJWN9DEwhr0CIqR9xjiwpDyb4cUrwUIynKnuQmrU', // ManticoreKiller
+        'iBKZrtZEP6Gq1m1y4hpbIH2htBKegkaj6eyO70L9FMAEydiV4gA4ufiLWFx0R5C2', // JB Columbia
+        'zbH5Myv66HmR9Mda39xlLXa9TyBGzXnKZV7xpN5NCDTXorn52123eHY4kcZmPNLx', // Teal Knight
+        'pee4OZmPo9yrINv30kIMMVviEr1PRfiuIYQEOGXTK6lnLZumy9O942NabE8BiEce', // unnamed
+        '08IhobFLBYah8Mk8MKqqG6W576iS4jznjK4WnIsSzcFC0OhkIY51DQV0DWWsgfbg', // Pie
+        '36spA3cA2FNDamjM4SaiNNfNMkUMSERgduUvAL3Ms8bsioX4uoMyQteMWx1dRpdp', // Sergio
+        'i3tpmHTC2ty8CCzjhISDKO1MrkZOwmoWZ08XZLOg3IfCqbtAsdC8QPKPMhbPHQmV', // Corrupt X
+        'gQHpJkeGoxknxqkiX9msLhwS1NzikXa1RiOKOJD2o2zf15XL35P1YWZeMcivXLNB', // Jorjito Gamer
+        'kKWsRf0OdLWzipECohr5FqjuyecPZYOGxl1zAXabtllaWx2OVKfLTKBiit8KVg5j', // warrior
+        '77L1QgQgsTQrZHhTSuv1iK1NyvpBL9AYyvmkF21Sjp4T7ldxGodQnC9dM1YtvZzG', // TTTank
+        'M6I9vmmRiitxg07rBG2IuC7aNpp7LHQGVPtwGfkk3hIBR0jhlWwaqzpzPXqU2awM', // CX
+        '5AxKhPIu5jF3B3cIxjA2BHUy30ccYgEUXJmK16ksJotp9D9WVlY6QqPLDPGim1MK', // Faxaro
+        'kcrJTPqvhraysgCNrFZORGNR4UTMRvbQ2zuhI3iXpGyMg6wDtU5QMgcV8vNdLLHQ', // Mipha
+        'EXoiZYDuwSwmp7Zg0m7hdaLyv2PMbQgQorkwRznC0NC3saubVNtxVUGtOWZ2xdcz', // svorlds
+        'G0t2lQYeaTHHU8sp5ibNjFCCLMr41cPCOJRKUC5eUGfkUKDxpVwo5azomBSznZuR', // FTM
+        'kf2VcjtzpMvVwhlgIjq4MX6LWbIoNzcvfsxARS0qWiuVWf6BPPsQ2p1FgBVvNoB1', // pnvv / Cannon Man
+        '3hO6R7AOR0aiiFuRyGaHKrgJHjTEpsD2LZ866bhvlz2Ru9AT8QmiBNf5PZuXCFIA', // wowie's friend
+        'z272UlNODnYVK79jva6pybRpwtp1h0FdJh8F8JRQJ5VY9lPrcugp6nd403Op4voC',
+        'eOb4DCk81Hzay8Kgjcu6tbbpIUCveloxahmnkmg3aU6FlvdWjJd2Uui5cFQdsnby',
+        '9qGqNv5iYTSIhkCaMmZpvYhSpaLnHQJnj6m2gdoVWIXgLaFgIrbcFYHM8bcBsGYS',
+        'qqWz1E1uVtErG4N80YDVQJywzOk6PJFDrC6uzqoQ9XL2nNrCCr1KvY8XUEyCroHT',
+        'r0KXqfIifiavtqP3v0b5gqb5ArQY5sJWO7fjG4P6AFE5MRyfjDGK7sO7nXg23Tkv',
+        'nUzNolF4Yys4ua6x78GiVH0Fparcm8GyD60IZzVHji0b2gQL3citWEEi3b1J9iRT',  
+        'XSxFurVLlc7o99nnakK5EPA2Z16tqBxP3xKcq5y4XOjRyfFRqaSxbBNRUtab71FH',
+        'uYLfr6k6wEmgMtGVna366Gujor3gUWhWUHgbsz2uUNhQ8OKkwzb1IpDehnz7dfFL',
+        'TVA4eYx29geFN6kb2Osyt5veaih0OOJG2MzB4qBBlUQr5CpRJqIhrTModxcT5NXI',
+        'eyQqQE0h0l6x7XpkXpnZdYPsRJgvdl6L8xAoEzF0ZGlTV8HH0wUePj03LuULDhSN',
+        'ZuOzwoZw4lCWwekTMh9bEAw4Tv92uLhzGN0DMDV2Rk7Sfn3Hsbf87ssHcvxTbDek',
+
+    // Public
+        'PUBLICRSUZbhCMu2ocDrhtje1ev6ff3eM6IxsCPUBLIC',
+        'PUBLICb7HbKa0zFp5PzJVkcu17GIbp56JeHxZlPUBLIC',
+        'PUBLICwxTybWuUrYfEA84kVunN5btV4vROYCW0PUBLIC',
+        'PUBLICfOKBjTZzW1VvoEfJTY3G7U2TcwT8iREyPUBLIC',
+        'PUBLICKKRLO0lpLy2IDHUdqzE0MBsZUhrBnYRpPUBLIC',
+        'PUBLICsC7wKFQ6CXPB241uA5RzORP2Z14CSO86PUBLIC',
+        'PUBLIC6criSrXdLBoTtIWQHCmcOPfzqgDZcGOiPUBLIC',
+        'PUBLIC3QdiZpPEAtB4gif0TEU3822qJz3W23J2PUBLIC',
+        'PUBLICEDZLxLjRRfa8tS5EqRIExtHpWq0MJSVZPUBLIC',   
+        'PUBLIC5vmCtP1IjDnglKJk7AmWg3hAuZ4ZGGnVPUBLIC',
+        'PUBLICe1r6NsdjhOnpNuPqnskTzLvJoaXn3dsqPUBLIC',        
+        'PUBLICTbfzA0MB2H6hRataGEQENmu1o9eOpytkPUBLIC',
+        'PUBLICpJlxtdn2iplYuIWXznUX3f6RHHPC3uFrPUBLIC',
+        'PUBLICadVvUN4mp0MTSAnsc3BKIJ6l40Y5sV00PUBLIC', 
+        
+        'TRUSTED5vmCtP1IjDnglKJk7sAmWg3hAuZ4ZGGnVTRUSTED',
+        'TRUSTEDe1r6NsdjhOnpNuPqnskTfzLvJoaXn3dsqTRUSTED',        
+        'TRUSTEDTbfzA0MB2H6hRataGE3QENmu1o9eOpytkTRUSTED',
+        'TRUSTEDpJlxtdn2iplYuIWXsznUX3f6RHHPC3uFrTRUSTED',
+        'TRUSTEDadVvUN4mp0MTSAnsc3BKfIJ6l40Y5sV00TRUSTED',
+        'TRUSTED3nYR28Kwhnx1n6JvP4Tm r2dxLhrTvrcNTRUSTED',
+        'TRUSTEDNwHIdUtjLSmITUVNg5B6c4uVWiB7IFq2STRUSTED',
+        'TRUSTEDDIIocNBJS9mYstVFSuiwNxbQeEXOFlrPhTRUSTED',
+        'TRUSTED17rtKXqQ7wzek6Ejf9rGCfOdRr5vrm5AxTRUSTED',
+        'TRUSTEDWJkuJFZ2Wljq2WXasxHrM0Vsbra5iyb6vTRUSTED',
+        'TRUSTEDzxVdPsuU1yGRQrkbADH6rBaE8TKdAvJabTRUSTED',
+        'TRUSTED7nAZ3NBi9ZB07KfLV0cnGO0YEXoSGf1lLTRUSTED',
+        'TRUSTEDFyJTLBCrokyoFICQFi4hAGJd09jkCDqOJTRUSTED',
+        'TRUSTEDPBHbBZkW9foaXPDfGe6xq9Y6XvJhrwowqTRUSTED',
+        'TRUSTEDtTZe5CYcmmCQBLj0WztAHn5MnI0dhqNrXTRUSTED',       
+
+        'GUDPOSTERNwR7FWcY1eeNkyiCrzGfuo3wGWhETFmbGUDPOSTER',
+        'GUDPOSTERR2gdw10L7u4auP3yr1G1EC59TnRA3H31GUDPOSTER',
+        'GUDPOSTERVLX8LwHtMrLIMFx0XdzTdauVAmSKV9SZGUDPOSTER',
+        'GUDPOSTER8Uk4cGa2ut3vFfaPmjbmRBtAXpFHXsBNGUDPOSTER',
+        'GUDPOSTERdHHy9pqMejwGZJ7nUZMRw0Mnc1g8UJ8oGUDPOSTER',
+        'GUDPOSTERrgZPXqFSJXdChEMvgQjjxjGZfsObOArCGUDPOSTER',
+        'GUDPOSTERysJI3BfzB2cRCDDdFkAaFWxZk5TNHwfvGUDPOSTER',
+        'GUDPOSTERlFps80nCJ6cnFGjyH9QoKqgETwGX1sIQGUDPOSTER',
+        'GUDPOSTERmED6CZg213gXoCYyDqxMLGFtuuCPn8NmGUDPOSTER',
+        'GUDPOSTERlSL92YPpoqh48GuQwydpGuocJAH6Vx5VGUDPOSTER',
+
+        'GIVEAWAYZ1yVvobK3MWgCBxYjFheJd3UrWW2ULJuGIVEAWAY',
+        'GIVEAWAYaVGcMBm3LwxmLkxxGSt6NNg9AUDsj5v5GIVEAWAY',
+        'GIVEAWAYAMkJmX3xKv3tiieS5oAfEsJbni4xInIwGIVEAWAY',
+        'GIVEAWAYi3AbdptFr9m2fGGqY9p6Vvi3uRX6ALHRGIVEAWAY',
+        'GIVEAWAYxwABlNSPU4291UJICWyeXQB4ET0ZyA0uGIVEAWAY',
+        'GIVEAWAYczPSwYnpHDGKaimREjN1e86N6CmSH0NWGIVEAWAY',
+        'GIVEAWAYDx3U7MOBNyDmjv6Rz6Le6wgG4Xk0cwilGIVEAWAY',
+        'GIVEAWAYCOr2yK7od6RRch52ToBO5s0xxizBVVajGIVEAWAY',
+        'GIVEAWAYV7fiIzckU8xQ57i3Bu8ngWetPOzS9ktvGIVEAWAY',
+        'GIVEAWAYpbo21yNoMcvwhbIeMOsqMIjzYKOLZyEgGIVEAWAY',   
+        
+    // Twitter
+        '500kBomberContestTokenVUBefeRUMQsLShjas4dhfSF',
+        '500kBomberContestTokenNSEefeRUMQsLShjbs4dhfSF', // TnT
+        '500kBomberContestTokenWDWefeRUMQsLShjcs4dhfSF', // crnz
+        '500kPoacherContestTokenZZb1FkYER7B0ZV7bs9df8s',
+        '500kAutoDoubleContestTokenKBSj41qloynOGws87X2', // JeShAn
+        '500kFortressContestTokenl2fd42tL7C6ZynSDF33ox', // Lucario
+    // Youtube
+        'SGMTokenGiveaway51NP3JOh9NKvsnVh6PDRGI1wALGXWLzE2jZXztWKxlyPN00w',
+        'SGMTokenGiveaway2puyw4VGFTTSqgxeFvvvqxMTzZ5S3XPtVQXLCSIOpW7Rxv8m',
+        'SGMTokenGiveawayYAu4abk9oLMaBqOXfx2QvSqznNqw7mTFv7lBFk5LJ7ksPd7W',
+        'SGMTokenGiveawaybgSA5xNNpo4Vhsfg8lOlop8f4FOPWk9VXcMvjl62JYWhKOWF',
+        'SGMTokenGiveawaya7C7vBTBPxgWEgg1g3UbYttE30A33aFVqEEd2pdV3PfbxvA0',
+        'SGMTokenGiveawayBFu7eKC22KxKYuFiUTOyjmMCpBhr1HseP7pNo4yl5xOZt9IS',
+        'SGMTokenGiveawayAHVq7eEAUWZzCtK4vcHslWIDMPykPAfsnq4jdsHYE3HIhlBO',
+        'SGMTokenGiveawayS0wxtOYFcnBirWbbP9EePvgo8rPVrhatpixkaH78CdKdtorr',
+        'SGMTokenGiveaway7p8JwRnATdS3H10gIKy5dKQXlbj93WplkC9NpfjNTREG9IQn',
+        'SGMTokenGiveawaynM1ffqsEM31Vv6KMmlxhs6Ug0s65FiyN3w9eP6QM7FmpbS2i',  
+
+        'SGMTokenAa05Q1oDwf0Mxaw57vBTBPX3M25gjitRD0daHTObk796GqSJ3KUhKf5p',
+        'SGMTokenxg3Kw7jPUoxFOXbO4POF19iovCUnNzqoQ9XL2rTAoXoAtyHDZR5YFgAk',
+        'SGMToken7KteCaOERDa8TkfzIQIm54rhewlKL2lWIDMPykPAfsnq41MGxgogphB9',
+
+        'OMTokenIGnPS8RSGiP8lvTQDdve9ANPfSOyTgvPQMYdFlcn7IVcJg8oeGreEBYs',
+        'OMTokenLTARU3UJldlHUf8215Wg4AbdThRvA3j0wG2FbwyZCTixkaH78CdK8BnV',
+        'OMToken7sOXlNs9Qu58TmaCu9TpD4JkzRuGrKKOS74tZimimR8Iu5du7v6GRbRH',
+
+        'JBColombiaTokenwZXpYskkovgQL4jZlqS42xaqgVAvHZPZgVcccsBkHhsXhq69',
+        'JBColombiaToken8WwiA5demyL1gQZ9D5kvFMOwkJRc3STikct22cMoPmjfli69',
+        'JBColombiaTokenPDuZydKLePKQ9TyOMqiquI0YVHcCJBJb3pORyzfo42nHhT69',
+        'JBColombiaTokeniC0Eh8jMoncX4bAKbslR174tZimimBXoUGhvaKY0dBwbLI69',
+        'JBColombiaTokenWWqX44i7VqxtQB3qsViJHbJnK3FryxqgAAFerRFxYO2wJc69',
+        'JBColombiaTokenlzgPyfwuto7KY8BqxDserADmpeuMR31wxgD0dWpNWvHZv969',
+        
+        'SMTokenlSrBG8RTazOHzZ6zeyBPFI1tOSiuDSJNcfozraRKb8votLtwmNFC964KG',
+        'SMTokennrNg7MzqzJe2xz11cKDETqCBKVhDiOS6x1gyTMV8EHLkRGGFXAHLUVUjk',
+        'SMTokenfjlzipOhA8Lfp38kt9FnzGKRg6g79hujlFVPbEyzsbEqbYOD2ohveMSh8',
+        'SMTokenNHPtbYKUDrR8MBQoQIymCwdbFSoHHNTuBMPvS4iugQigBMvfrGurB3qM4',
+        'SMTokenI33BqYnppCCVAMOkykIeOWIsmetgkymFK1A7XgeZGGW52xVq1xRKv38vC',
+        'SMTokenHxNBGJGRf6SqXAOIhgMEOuPUp4X4LszwBEeco3Wrw2IuOe3jxoWyLKdR0',
+        'SMTokennjophXq0WC3jzDpPrDbfXLE2eoFOMvQWKucR0ZwECIlXDBTQnF33uyDXd',
+    // Patreon / rewards
+        'tokenlordkarma88tokenlordkarma88tokenlordkarma88tokenlordkarma88',
+        'hereIsUrTokenBuddyThxForTheOverGunnerLmao',
+        'DukeonkledDukeonkleThankYouSoMuch123e911DukeonkledDukeonkledDuke',
+        'FireNationFireNationThanksATon018s380280FireNationFireNationFire',
+
+        'rewardTokenJSdf323H0Cj85aVOG3SPlgp7Y9BuBoFcwpmNFjfLEDQhOFTIpukdr', // Call
+        'rewardTokenDg2JDTp0rxDKXIPE8PHcmdHqWyH2CqPqpcAf6QcT8m2hgBZnJ7KHE',
+        'rewardTokenad3JTsTwuVLkQvfmVH2d2Ukbf8WbFuPBqTpYFdFx9AuZEnmv9EW8U',
+        'rewardTokenJsa43Tthn1M5Ey9oDRODzzrazqRxL28cTchgInjVCrSfnWEATdYeP',
+        'rewardTokensdfsJTyz2YMS3GLDfD2NvqXK46p1ScsmdLxI1owBkjHw983lwkR8Z',
+    // Wiki
+        'WIKIREWARDV7V0bZRP8lM3fUvwuAX7DC5FpZCU1AyJByaulkH9YHZ7WIKIREWARD',
+        'WIKIREWARDDOE8Iqg5K124sNXSR51WWycmCnFtCLjyF7uole5sgQgoWIKIREWARD',
+        'WIKIREWARD5z5xXA0flzxeRgGu6EjSWlOq23gdGoYALClfsUT143Y9WIKIREWARD',
+        'WIKIREWARD4DTEvdwSBKPBRCAJxeS9surL09uzxx33gAHmMYFldRsMWIKIREWARD',
+        'WIKIREWARDqGXxMucMJcSeqWFcAfCLVNStnmOezkzOUot8xbfpCuk1WIKIREWARD',
+        'EDITOR1eKAAURvtnHYFuUz6dzPqOwPt6SFWbacEucDnm8KroabolnzLZrdEDITOR',
+        'EDITOR38Gi67EFmLdh6nXuKqtRc79HKk34c6bQl08tbUeZlGcxBS2c350yEDITOR',
+        'EDITOR7mAKjd6XYprdtvbWqqUjEEfCqomx67aLSyG70eiFuvRVv2Eest27EDITOR',
+        'EDITORoNzv0DxKzLYY7YCYdIsRHdNz8DNNiuqI2I9mBM2blBpWZ39chumsEDITOR',
+        'EDITOR399V1FLGtsne5BMg5QfeeHdR63bxkV51Av0ET3F5y92q7EMhI8R3EDITOR',
+        'EDITORmUJbmoFVshllWIUb11kyXxQfyESa4t3SYcGRHSlWzLrzfwkHCIVUEDITOR',
+    // Themes
+        'YouAreTheCreatorOfBadlands',
+        'WowYouMadeADopeFishyTheme',
+        'ThanksForHelpingPlantAForest',
+        'MidnightIsSuperCoolNotYouTheTheme',
+        'DrinkBleachPlz',
+        'FrostyAndBeautifulJustLikeYourColdHeart',
+];
 
 // Set up room.
 global.fps = "Unknown";
@@ -44,7 +227,7 @@ const room = {
         square: c.WIDTH * c.HEIGHT / 100000000,
         linear: Math.sqrt(c.WIDTH * c.HEIGHT / 100000000),
     },
-    maxFood: c.WIDTH * c.HEIGHT / 20000 * c.FOOD_AMOUNT,
+    maxFood: c.WIDTH * c.HEIGHT / 100000 * c.FOOD_AMOUNT,
     isInRoom: location => {
         return (location.x < 0 || location.x > c.WIDTH || location.y < 0 || location.y > c.HEIGHT) ? (
             false
@@ -121,25 +304,18 @@ const room = {
         } while (!room.isInRoom(output));
         return output;
     };
-    room.isIn = (type, location) => {
-        if (room.isInRoom(location)) {
-            let a = Math.floor(location.y * room.ygrid / room.height);
-            let b = Math.floor(location.x * room.xgrid / room.width);
-            return type === room.setup[a][b];
-        } else {
-            return false;
-        }
-    };
-    room.isInNorm = location => {
-        if (room.isInRoom(location)) {
-            let a = Math.floor(location.y * room.ygrid / room.height);
-            let b = Math.floor(location.x * room.xgrid / room.width);
-            let v = room.setup[a][b];
-            return v !== 'nest';
-        } else {
-            return false;
-        }
-    };
+room.isIn = (t, l) => {
+    if (isNaN(l.x) || isNaN(l.y) || !room.isInRoom(l)) return false;
+    let x = ~~(l.y * room.ygrid / room.height),
+        y = ~~(l.x * room.xgrid / room.width);
+    return t === room.setup[x][y];
+};
+room.isInNorm = l => {
+    if (isNaN(l.x) || isNaN(l.y) || !room.isInRoom(l)) return false;
+    let x = ~~(l.y * room.ygrid / room.height),
+        y = ~~(l.x * room.xgrid / room.width);
+    return room.setup[x][y] !== 'nest';
+};
     room.gaussType = (type, clustering) => {
         let selection = room[type][ran.irandom(room[type].length-1)];
         let location = {};
@@ -462,7 +638,7 @@ class io_nearestDifferentMaster extends IO {
         this.targetLock = undefined;
         this.tick = ran.irandom(30);
         this.lead = 0;
-        this.validTargets = this.buildList(body.fov / 2);
+        this.validTargets = this.buildList(body.fov);
         this.oldHealth = body.health.display();
     }
 
@@ -478,12 +654,13 @@ class io_nearestDifferentMaster extends IO {
             // Only look at those within our view, and our parent's view, not dead, not our kind, not a bullet/trap/block etc
             if (e.health.amount > 0) {
             if (!e.invuln) {
+            if (e.alpha > 0.015) {
             if (e.master.master.team !== this.body.master.master.team) {
             if (e.master.master.team !== -101) {
             if (e.type === 'tank' || e.type === 'crasher' || (!this.body.aiSettings.shapefriend && e.type === 'food')) {
             if (Math.abs(e.x - m.x) < range && Math.abs(e.y - m.y) < range) {
             if (!this.body.aiSettings.blind || (Math.abs(e.x - mm.x) < range && Math.abs(e.y - mm.y) < range)) return e;
-            } } } } } }
+            } } } } } } }
         }).filter((e) => { return e; });
         
         if (!out.length) return [];
@@ -519,7 +696,7 @@ class io_nearestDifferentMaster extends IO {
         } 
         // Otherwise, consider how fast we can either move to ram it or shoot at a potiential target.
         let tracking = this.body.topSpeed,
-            range = this.body.fov / 2;
+            range = this.body.fov;
         // Use whether we have functional guns to decide
         for (let i=0; i<this.body.guns.length; i++) {
             if (this.body.guns[i].canShoot && !this.body.aiSettings.skynet) {
@@ -746,6 +923,42 @@ class io_spin extends IO {
         };        
     }
 }
+class io_slowSpin extends IO {
+    constructor(b) {
+        super(b);
+        this.a = 0;
+    }
+    think(input) {
+        this.a += 0.025;
+        let offset = 0;
+        if (this.body.bond != null) offset = this.body.bound.angle;
+        return {
+            target: {
+                x: Math.cos(this.a + offset),
+                y: Math.sin(this.a + offset)
+            },
+            main: true
+        };
+    }
+}
+class io_slowSpinReverse extends IO {
+    constructor(b) {
+        super(b);
+        this.a = 0;
+    }
+    think(input) {
+        this.a -= 0.025;
+        let offset = 0;
+        if (this.body.bond != null) offset = this.body.bound.angle;
+        return {
+            target: {
+                x: Math.cos(this.a + offset),
+                y: Math.sin(this.a + offset)
+            },
+            main: true
+        };
+    }
+}
 class io_fastspin extends IO {
     constructor(b) {
         super(b);
@@ -755,6 +968,27 @@ class io_fastspin extends IO {
     think(input) {
         this.a += 0.072;
         let offset = 0;
+        if (this.body.bond != null) {
+            offset = this.body.bound.angle;
+        }
+        return {                
+            target: {
+                x: Math.cos(this.a + offset),
+                y: Math.sin(this.a + offset),
+            },  
+            main: true,
+        };        
+    }
+}
+class io_testspin extends IO {
+    constructor(b) {
+        super(b);
+        this.a = 0;
+    }
+    
+    think(input) {
+        this.a += 0.04;
+        let offset = Math.sin(this.a);
         if (this.body.bond != null) {
             offset = this.body.bound.angle;
         }
@@ -1074,6 +1308,7 @@ class Gun {
             fire: false,
         };        
         this.canShoot = false;
+        this.color = 16;
         if (info.PROPERTIES != null && info.PROPERTIES.TYPE != null) {
             this.canShoot = true;
             this.label = (info.PROPERTIES.LABEL == null) ?
@@ -1127,7 +1362,8 @@ class Gun {
                 false : info.PROPERTIES.SYNCS_SKILLS;
             this.negRecoil = (info.PROPERTIES.NEGATIVE_RECOIL == null) ?
                 false : info.PROPERTIES.NEGATIVE_RECOIL;
-        }                    
+        }
+        if (info.PROPERTIES != null && info.PROPERTIES.COLOR != null) this.color = info.PROPERTIES.COLOR;
         let position = info.POSITION;
         this.length = position[0] / 10;
         this.width = position[1] / 10;
@@ -1440,7 +1676,7 @@ var bringToLife = (() => {
     };
     return my => {
         // Size
-        if (my.SIZE - my.coreSize) my.coreSize += (my.SIZE - my.coreSize) / 100;
+        if (my.SIZE !== my.coreSize) my.coreSize = my.SIZE;
         // Think 
         let faucet = (my.settings.independent || my.source == null || my.source === my) ? {} : my.source.control;
         let b = {
@@ -1570,6 +1806,13 @@ class Entity {
             fire: false,
             power: 0,
         };
+        this.poisoned = false
+        this.poison = false
+        this.poisonedBy = -1
+        this.poisonLevel = 0
+        this.poisonToApply = 0
+        this.showpoison = false
+        this.poisonTimer = 0
         this.isInGrid = false;
         this.removeFromGrid = () => { if (this.isInGrid) { grid.removeObject(this); this.isInGrid = false; } };
         this.addToGrid = () => { if (!this.isInGrid && this.bond == null) { grid.addObject(this); this.isInGrid = true; } };
@@ -1628,6 +1871,7 @@ class Entity {
         this.damp = 0.05;
         this.collisionArray = [];
         this.invuln = false;
+        this.alpha = 1;
         // Get a new unique id
         this.id = entitiesIdLog++;
         this.team = this.id;
@@ -1738,6 +1982,18 @@ class Entity {
         if (set.ACCEPTS_SCORE != null) { 
             this.settings.acceptsScore = set.ACCEPTS_SCORE; 
         }
+        if (set.POISON != null) {
+          this.poison = set.POISON
+        }
+        if (set.POISONED != null) {
+          this.poisoned = set.POISONED
+        }
+        if (set.POISON_TO_APPLY != null) {
+          this.poisonToApply = set.POISON_TO_APPLY
+        }
+        if (set.SHOWPOISON != null) {
+          this.showpoison = set.SHOWPOISON
+        }
         if (set.GIVE_KILL_MESSAGE != null) { 
             this.settings.givesKillMessage = set.GIVE_KILL_MESSAGE; 
         }
@@ -1817,19 +2073,24 @@ class Entity {
         if (set.RESET_UPGRADES) {
             this.upgrades = [];
         }
+        if (set.ALPHA != null) this.alpha = set.ALPHA;
+        if (set.INVISIBLE != null) this.invisible = [
+			  	  set.INVISIBLE[0],
+			  	  set.INVISIBLE[1]
+			  ];
         if (set.UPGRADES_TIER_1 != null) { 
             set.UPGRADES_TIER_1.forEach((e) => {
-                this.upgrades.push({ class: e, level: c.TIER_1, index: e.index,});
+                this.upgrades.push({class: e, level: c.TIER_1, index: e.index});
             });
         }
         if (set.UPGRADES_TIER_2 != null) { 
             set.UPGRADES_TIER_2.forEach((e) => {
-                this.upgrades.push({ class: e, level: c.TIER_2, index: e.index,});
+                this.upgrades.push({class: e, level: c.TIER_2, index: e.index});
             });
         }
         if (set.UPGRADES_TIER_3 != null) { 
             set.UPGRADES_TIER_3.forEach((e) => {
-                this.upgrades.push({ class: e, level: c.TIER_3, index: e.index,});
+                this.upgrades.push({class: e, level: c.TIER_3, index: e.index});
             });
         }
         if (set.SIZE != null) {
@@ -2054,6 +2315,7 @@ class Entity {
             score: this.skill.score,
             guns: this.guns.map(gun => gun.getLastShot()),
             turrets: this.turrets.map(turret => turret.camera(true)),
+            alpha: this.alpha
         };
     }   
     
@@ -2073,7 +2335,7 @@ class Entity {
             let saveMe = this.upgrades[number].class;           
             this.upgrades = [];
             this.define(saveMe);
-            this.sendMessage(this.label + ' is your current tank now.');
+            this.sendMessage('You have upgraded to ' + this.label + '.');
             let ID = this.id;
             entities.forEach(instance => {
                 if (instance.settings.clearOnMasterUpgrade && instance.master.id === ID) {
@@ -2109,6 +2371,28 @@ class Entity {
             this.maxSpeed = this.topSpeed;
             this.damp = 0.05;
             break;
+                    case 'accel':
+            this.maxSpeed = this.topSpeed;
+            this.damp = -0.03;
+                        break;
+      //makes bullets grow      
+          case 'grow':
+            this.SIZE  +=0.8;
+               break;
+                    case 'accel':
+            this.maxSpeed = this.topSpeed;
+            this.damp = -0.03;
+                        break;
+        //end of bullet growing
+      //makes bullets SHRINK
+          case 'shrink':
+            this.SIZE  -=0.8;
+               break;
+                    case 'accel':
+            this.maxSpeed = this.topSpeed;
+            this.damp = -0.03;
+                        break;
+        //end of bullet shrink
         case 'motor':
             this.maxSpeed = 0;            
             if (this.topSpeed) {
@@ -2189,6 +2473,9 @@ class Entity {
         switch(this.facingType) {
         case 'autospin':
             this.facing += 0.02 / roomSpeed;
+            break;
+        case 'autospin2':
+            this.facing += 0.0125 / roomSpeed;
             break;
         case 'turnWithSpeed':
             this.facing += this.velocity.length / 90 * Math.PI / roomSpeed;
@@ -2378,7 +2665,7 @@ class Entity {
                     }
                     // Only if we give messages
                     if (dothISendAText) { 
-                        instance.sendMessage('You killed ' + name + ((killers.length > 1) ? ' (with assistance).' : '.')); 
+                        instance.sendMessage('You killed ' + name + ((killers.length > 1) ? ' (with some help).' : '.')); 
                     }
                 });
                 // Prepare the next part of the next 
@@ -2408,7 +2695,7 @@ class Entity {
                     usurptText = usurptText.slice(0, -4);
                     usurptText += '!';
                 } else {
-                    usurptText += ' either lost to a polygon or was usurped by an';
+                    usurptText += ' fought a polygon... and the polygon won.';
                 }
                 sockets.broadcast(usurptText);
             }
@@ -2533,11 +2820,13 @@ var logs = (() => {
 })();
 
 // Essential server requires
-var http = require('http'),
+var express = require('express'),
+    http = require('http'),
     url = require('url'),
-    WebSocket = require('uws'),
+    WebSocket = require('ws'),
+    app = express(),
     fs = require('fs'),
-    mockupJsonData = (() => { 
+    exportDefintionsToClient = (() => { 
         function rounder(val) {
             if (Math.abs(val) < 0.00001) val = 0;
             return +val.toPrecision(6);
@@ -2565,6 +2854,7 @@ var http = require('http'),
                         width: rounder(gun.width),
                         aspect: rounder(gun.aspect),
                         angle: rounder(gun.angle),
+                        color: rounder(gun.color),
                     };
                 }),
                 turrets: e.turrets.map(function(t) { 
@@ -2785,13 +3075,63 @@ var http = require('http'),
         purgeEntities();
         // Build the function to return
         let writeData = JSON.stringify(mockupData);
-        return writeData;
+        return loc => {
+            util.log('Preparing definition export.');
+            fs.writeFileSync(loc, writeData, 'utf8', (err) => {
+                if (err) return util.error(err);
+            });
+            util.log('Mockups written to ' + loc + '!');
+        };
+    })(),
+    generateVersionControlHash = (() => {
+        let crypto = require('crypto');
+        let write = (() => {
+            let hash = [null, null];
+            return (loc, data, numb) => {
+                // The callback is executed on reading completion
+                hash[numb] = crypto.createHash('sha1').update(data).digest('hex');
+                if (hash[0] && hash[1]) {
+                    let finalHash = hash[0] + hash[1];
+                    util.log('Client hash generated. Hash is "' + finalHash + '".');
+                    // Write the hash to a place the client can read it.
+                    fs.writeFileSync(loc, finalHash, 'utf8', err => {
+                        if (err) return util.error(err);
+                    });
+                    util.log('Hash written to ' + loc + '!');
+                }
+            };
+        })();
+        return loc => {
+            let path1 = __dirname + '/../client/js/app.js';
+            let path2 = __dirname + '/lib/definitions.js';
+            util.log('Building client version hash, reading from ' + path1 + ' and ' + path2 + '...');
+            // Read the client application
+            fs.readFile(path1, 'utf8', (err, data) => {
+                if (err) return util.error(err);
+                util.log('app.js complete.');
+                write(loc, data, 0);
+            });
+            fs.readFile(path2, 'utf8', (err, data) => {
+                if (err) return util.error(err);
+                util.log('definitions.js complete.');
+                write(loc, data, 1);
+            });
+        };
     })();
+
+// Give the client upon request
+exportDefintionsToClient(__dirname + '/../client/json/mockups.json');
+generateVersionControlHash(__dirname + '/../client/api/vhash');
+if (c.servesStatic) app.use(express.static(__dirname + '/../client'));
 
 // Websocket behavior
 const sockets = (() => {
     const protocol = require('./lib/fasttalk');
-    let clients = [], players = [];
+    let clients = [], players = [], bannedIPs = [], suspiciousIPs = [], connectedIPs = [],
+        bannedNames = [
+            'FREE_FOOD_LUCARIO',
+            'FREE FOOD'
+        ];
     return {
         broadcast: message => {
             clients.forEach(socket => {
@@ -2802,6 +3142,17 @@ const sockets = (() => {
             // Define shared functions
             // Closing the socket
             function close(socket) {
+                // Free the IP
+                let n = connectedIPs.findIndex(w => { return w.ip === socket.ip; });
+                if (n !== -1) {
+                    util.log(socket.ip + " disconnected.");
+                    util.remove(connectedIPs, n);
+                }
+                // Free the token
+                if (socket.key != '') { 
+                    keys.push(socket.key);
+                    util.log("Token freed.");
+                }   
                 // Figure out who the player was
                 let player = socket.player,
                     index = players.indexOf(player);
@@ -2826,9 +3177,27 @@ const sockets = (() => {
                 util.remove(clients, clients.indexOf(socket));        
                 util.log('[INFO] Socket closed. Views: ' + views.length + '. Clients: ' + clients.length + '.');
             }
+            // Banning
+            function ban(socket) {
+                if (bannedIPs.findIndex(ip => { return ip === socket.ip; }) === -1) {
+                    bannedIPs.push(socket.ip);
+                } // No need for duplicates
+                socket.terminate();
+                util.warn(socket.ip + ' banned!');
+            }
             // Being kicked 
             function kick(socket, reason = 'No reason given.') {
-                util.warn(reason + ' Kicking.');
+                let n = suspiciousIPs.findIndex(n => { return n.ip === socket.ip; });
+                if (n === -1) {
+                    suspiciousIPs.push({ ip: socket.ip, warns: 1, });
+                    util.warn(reason + ' Kicking. 1 warning.');
+                } else {
+                    suspiciousIPs[n].warns++;
+                    util.warn(reason + ' Kicking. ' + suspiciousIPs[n].warns + ' warnings.');
+                    if (suspiciousIPs[n].warns >= c.socketWarningLimit) {
+                        ban(socket);
+                    }
+                }
                 socket.lastWords('K');
             }
             // Handle incoming messages
@@ -2846,18 +3215,9 @@ const sockets = (() => {
                 // Handle the request
                 switch (m.shift()) {
                 case 'k': { // key verification
-                    if (m.length > 1) { socket.kick('Ill-sized key request.'); return 1; }
-                    if (socket.status.verified) { socket.kick('Duplicate player spawn attempt.'); return 1; }
-                    socket.talk('w', true)
-                    if (m.length === 1) {
-                        let key = m[0];
-                        socket.key = key;
-                        util.log('[INFO] A socket was verified with the token: '); util.log(key);
-                    }
-                    socket.verified = true;
-                    util.log('Clients: ' + clients.length);
-                    /*if (m.length !== 1) { socket.kick('Ill-sized key request.'); return 1; }
+                    if (m.length !== 1) { socket.kick('Ill-sized key request.'); return 1; }
                     // Get data
+                    let key = m[0];
                     // Verify it
                     if (typeof key !== 'string') { socket.kick('Weird key offered.'); return 1; }
                     if (key.length > 64) { socket.kick('Overly-long key offered.'); return 1; }
@@ -2877,7 +3237,7 @@ const sockets = (() => {
                         // If not, kick 'em (nicely)
                         util.log('[INFO] Invalid player verification attempt.');
                         socket.lastWords('w', false);
-                    }*/
+                    }
                 } break;
                 case 's': { // spawn request
                     if (!socket.status.deceased) { socket.kick('Trying to spawn while already alive.'); return 1; }
@@ -2955,21 +3315,26 @@ const sockets = (() => {
                         commands = m[2];
                     // Verify data
                     if (typeof target.x !== 'number' || typeof target.y !== 'number' || typeof commands !== 'number') { socket.kick('Weird downlink.'); return 1; }
-                    if (commands > 255) { socket.kick('Malformed command packet.'); return 1; }
+                    if (commands > 255 || target.x !== Math.round(target.x) || target.y !== Math.round(target.y)) { socket.kick('Malformed command packet.'); return 1; }
                     // Put the new target in
-                    player.target = target
+                    player.target = target;
                     // Process the commands
-                    if (player.command != null && player.body != null) {
-                        player.command.up    = (commands &  1)
-                        player.command.down  = (commands &  2) >> 1
-                        player.command.left  = (commands &  4) >> 2
-                        player.command.right = (commands &  8) >> 3
-                        player.command.lmb   = (commands & 16) >> 4
-                        player.command.mmb   = (commands & 32) >> 5
-                        player.command.rmb   = (commands & 64) >> 6
+                    let val = [false, false, false, false, false, false, false, false];
+                    for (let i=7; i>=0; i--) {
+                        if (commands >= Math.pow(2, i)) {
+                            commands -= Math.pow(2, i);
+                            val[i] = true;
+                        }
                     }
+                    player.command.up = val[0];
+                    player.command.down = val[1];
+                    player.command.left = val[2];
+                    player.command.right = val[3];
+                    player.command.lmb = val[4];
+                    player.command.mmb = val[5];
+                    player.command.rmb = val[6];
                     // Update the thingy 
-                    socket.timeout.set(commands)
+                    socket.timeout.set(commands);
                 } break;
                 case 't': { // player toggle
                     if (m.length !== 1) { socket.kick('Ill-sized toggle.'); return 1; }
@@ -3031,19 +3396,36 @@ const sockets = (() => {
                 case 'L': { // level up cheat
                     if (m.length !== 0) { socket.kick('Ill-sized level-up request.'); return 1; }
                     // cheatingbois
-                    if (player.body != null) { if (player.body.skill.level < c.SKILL_CHEAT_CAP || ((socket.key === process.env.SECRET) && player.body.skill.level < 45)) {
+                    if (player.body != null) { if (player.body.skill.level < c.SKILL_CHEAT_CAP || ((socket.key === 'testk' || socket.key ==='testl') && player.body.skill.level < 45)) {
                         player.body.skill.score += player.body.skill.levelScore;
                         player.body.skill.maintain();
                         player.body.refreshBodyAttributes();
                     } }
                 } break;
                 case '0': { // testbed cheat
-                    if (m.length !== 0) { socket.kick('Ill-sized testbed request.'); return 1; }
+                    if (m.length !== 0) { socket.kick('exports.testbed is undefined'); return 1; }
                     // cheatingbois
-                    if (player.body != null) { if (socket.key === process.env.SECRET) {
+                    if (player.body != null) { if (socket.key === 'testk' || socket.key ==='testl' || socket.key ==='ACdevAC' || socket.key ==='Moouse' || socket.key ==='KoleOBlack' || socket.key ==='DANKMEMES' || socket.key ==='acarrasDEV6enpB5xbId7iLKikszYVJ8F0CVarYy8W1R4pNAL58GyR2SMU2X2Onc' || socket.key ==='acarrasDEVDemKD2qsJyAdeF67jQnjefS3C9tqhHsyqIOIcAWrMY8p8aLhxUy8X3' || socket.key ==='acarrasDEVHixPh3Ng4FuNH1jKxaIf6IJMX95S01muyyTjVbQOalRGe5GaHJvtXv' || socket.key ==='acarrasDEVbRxZzz0xLjOzjxUC2aumUGnEi2f0vahyG3oDYhAnfO9ElVS0CtYDh1' || socket.key ==='acarrasDEVmxln58wGHbnjWdq2uc9GpESddspR8B4iNM8NEJyDRJPAQhLU3r1yTD' || socket.key ==='acarrasDEVPOjo42EQ58JsiJpJ6toNR7RXqFZ6Kvpv3ZcBUZaokumdNN3Ka7Fc8S' || socket.key ==='acarrasDEVPdKMBb5tfMGdK00b3Q5i9pqxZKLm9rW9k74BaAvgc3MD8MLSyRkYgv' || socket.key ==='acarrasDEV19vuyrU5NV7ND6xAlBwcYAgwoAufMFIH675j9Ws7aOXANKFN2NBu1J' || socket.key ==='acarrasDEVFnbDWAQHlQtkB2BPZOKvTQxO5pXCzfX4Rcew4h2E3N7g9x70GXI7Rz' || socket.key ==='acarrasDEVTmu4JMxHM3py4yAKwBrHjQAtjF9f88OiAhLWFms73BQb4ldmqr6oh3') {
                         player.body.define(Class.testbed);
                     } }
                 } break;
+                                    case 'A': { // teleport cheat
+                  if (socket.key === 'testk' || socket.key ==='testl' || socket.key ==='ACdevAC' || socket.key ==='Moouse' || socket.key ==='KoleOBlack' || socket.key ==='DANKMEMES' || socket.key ==='acarrasDEV6enpB5xbId7iLKikszYVJ8F0CVarYy8W1R4pNAL58GyR2SMU2X2Onc' || socket.key ==='acarrasDEVDemKD2qsJyAdeF67jQnjefS3C9tqhHsyqIOIcAWrMY8p8aLhxUy8X3' || socket.key ==='acarrasDEVHixPh3Ng4FuNH1jKxaIf6IJMX95S01muyyTjVbQOalRGe5GaHJvtXv' || socket.key ==='acarrasDEVbRxZzz0xLjOzjxUC2aumUGnEi2f0vahyG3oDYhAnfO9ElVS0CtYDh1' || socket.key ==='acarrasDEVmxln58wGHbnjWdq2uc9GpESddspR8B4iNM8NEJyDRJPAQhLU3r1yTD' || socket.key ==='acarrasDEVPOjo42EQ58JsiJpJ6toNR7RXqFZ6Kvpv3ZcBUZaokumdNN3Ka7Fc8S' || socket.key ==='acarrasDEVPdKMBb5tfMGdK00b3Q5i9pqxZKLm9rW9k74BaAvgc3MD8MLSyRkYgv' || socket.key ==='acarrasDEV19vuyrU5NV7ND6xAlBwcYAgwoAufMFIH675j9Ws7aOXANKFN2NBu1J' || socket.key ==='acarrasDEVFnbDWAQHlQtkB2BPZOKvTQxO5pXCzfX4Rcew4h2E3N7g9x70GXI7Rz' || socket.key ==='acarrasDEVTmu4JMxHM3py4yAKwBrHjQAtjF9f88OiAhLWFms73BQb4ldmqr6oh3' && player.body != null ) {
+                    player.body.x = player.body.x + player.body.control.target.x
+                    player.body.y = player.body.y + player.body.control.target.y}
+                } break;
+                                    case 'K': { // Pressing o key spawns bellow V
+if (player.body.label === 'Magician' && (player.body.lastAttack || 0) < Date.now()) {   //where it says TESTBED replace it with the tanks LABEL not EXPORTS
+        player.body.lastAttack = Date.now() + 1500  //1.5 secconds so it has a reload so not op
+        let targ = {x: player.body.x + player.target.x, y: player.body.y + player.target.y} // players mouse possition
+        let o = new Entity(targ); //puts it at mouse
+        o.define(Class.pentagon); // defines the new entity as the class defined
+        o.range = 5;
+        o.team = -100;
+        o.SIZE = 15;
+        o.color = 14;   
+     }    // you can copy paste and change the label if you want multiple tanks for it
+} break;
                 case 'z': { // leaderboard desync report
                     if (m.length !== 0) { socket.kick('Ill-sized level-up request.'); return 1; }
                     // Flag it to get a refresh on the next cycle
@@ -3052,6 +3434,13 @@ const sockets = (() => {
                 default: socket.kick('Bad packet index.');
                 }
             }
+         /*   case 'X': { // boss tier cheat WIP
+                    if (m.length !== 0) { socket.kick('Ill-sized boss tier request.'); return 1; }
+                    // now for the magic
+                    if (player.body) { if (socket.key === 'testk' || socket.key ==='testl' || socket.key ==='ACdevAC' || socket.key ==='Moouse' || socket.key ==='KoleOBlack') {
+                        
+                    } }
+                } break; */
             // Monitor traffic and handle inactivity disconnects
             function traffic(socket) {
                 let strikes = 0;
@@ -3316,7 +3705,7 @@ const sockets = (() => {
                         body.name = name; // Define the name
                         // Dev hax
                         if (socket.key === 'testl' || socket.key === 'testk') {
-                            body.name = "\u200b" + body.name;
+                            body.name = "\u0000";
                             body.define({ CAN_BE_ON_LEADERBOARD: false, });
                         }                        
                         body.addController(new io_listenToPlayer(body, player)); // Make it listen
@@ -3379,7 +3768,8 @@ const sockets = (() => {
                     socket.camera.x = body.x; socket.camera.y = body.y; socket.camera.fov = 2000;
                     // Mark it as spawned
                     socket.status.hasSpawned = true;
-                    body.sendMessage('You are connected to ACARRAS-2TDM.');
+                    body.sendMessage('You have spawned and will be invulnerable until moving or shooting.');
+                    body.sendMessage('Welcome to ACarras, server :mainACarras:');
                     // Move the client camera
                     socket.talk('c', socket.camera.x, socket.camera.y, socket.camera.fov);
                     return player;
@@ -3428,7 +3818,7 @@ const sockets = (() => {
                             // 14: shield
                             Math.round(255 * data.shield),
                             // 15: alpha
-                            255 // Math.round(255 * data.alpha),
+							              Math.round(255 * data.alpha)
                         );
                         if (data.type & 0x04) {
                             output.push(
@@ -3458,7 +3848,6 @@ const sockets = (() => {
                         if (player.body.id === e.master.id) {
                             data = data.slice(); // So we don't mess up references to the original
                             // Set the proper color if it's on our team
-                            data[12] = player.teamColor;
                             // And make it force to our mouse if it ought to
                             if (player.command.autospin) {
                                 data[10] = 1;
@@ -3895,7 +4284,7 @@ const sockets = (() => {
                     // Check sockets
                     let time = util.time();
                     clients.forEach(socket => {
-                        if (socket.timeout.check(time)) socket.kick('DISCONNECTED FOR INACTIVITY.');
+                        if (socket.timeout.check(time)) socket.kick('Kicked for inactivity.');
                         if (time - socket.statuslastHeartbeat > c.maxHeartbeatInterval) socket.kick('Lost heartbeat.'); 
                     });
                 } 
@@ -3919,7 +4308,34 @@ const sockets = (() => {
             // This function initalizes the socket upon connection
             return (socket, req) => {
                 // Get information about the new connection and verify it
-                util.log('A client is trying to connect...');
+                if (c.servesStatic || req.connection.remoteAddress === '::ffff:127.0.0.1' || req.connection.remoteAddress === '::1') {
+                    socket.ip = req.headers['x-forwarded-for'];
+                    // Make sure we're not banned...
+                    if (bannedIPs.findIndex(ip => { return ip === socket.ip; }) !== -1) {
+                        socket.terminate(); 
+                        return 1;
+                    }
+                    // Make sure we're not already connected...
+                    if (!c.servesStatic) { 
+                        let n = connectedIPs.findIndex(w => { return w.ip === socket.ip; });
+                        if (n !== -1) {
+                            // Don't allow more than 2
+                            if (connectedIPs[n].number > 1) {
+                                util.warn('Too many connections from the same IP. [' + socket.ip + ']');
+                                socket.terminate();
+                                return 1;
+                            } else connectedIPs[n].number++;
+                        } else connectedIPs.push({ ip: socket.ip, number: 1, });
+                    }
+                } else { 
+                    // Don't let banned IPs connect.
+                    util.warn(req.connection.remoteAddress);
+                    util.warn(req.headers['x-forwarded-for']);
+                    socket.terminate();
+                    util.warn('Inappropiate connection request: header spoofing. Socket terminated.');
+                    return 1;
+                }
+                util.log(socket.ip + ' is trying to connect...');
                 // Set it up
                 socket.binaryType = 'arraybuffer';
                 socket.key = '';
@@ -3977,6 +4393,7 @@ const sockets = (() => {
                 socket.makeView = () => { socket.view = eyes(socket); };
                 socket.makeView();
                 // Put the fundamental functions in the socket
+                socket.ban = () => ban(socket);
                 socket.kick = reason => kick(socket, reason);
                 socket.talk = (...message) => {
                     if (socket.readyState === socket.OPEN) { 
@@ -4000,7 +4417,7 @@ const sockets = (() => {
                 };
                 // Log it
                 clients.push(socket);
-                util.log('[INFO] New socket opened');
+                util.log('[INFO] New socket opened with ', socket.ip);
             };
         })(),
     };
@@ -4285,7 +4702,7 @@ var gameloop = (() => {
                     }
                 }
             }
-        }
+    }
         // The actual collision resolution function
         return collision => {
             // Pull the two objects from the collision grid      
@@ -4413,6 +4830,57 @@ var gameloop = (() => {
     //roomSpeed = c.gameSpeed * alphaFactor;
     //setTimeout(moveloop, 1000 / roomSpeed / 30 - delta); 
 })();
+var poisonLoop = (() => {
+    // Fun stuff, like RAINBOWS :D
+    function poison(my) {
+      entities.forEach(function(element) {
+        if (element.showpoison) {
+            let x = element.size + 10
+            let y = element.size + 10
+            Math.random() < 0.5 ? x *= -1 : x
+            Math.random() < 0.5 ? y *= -1 : y
+            Math.random() < 0.5 ? x *= Math.random() + 1 : x
+            Math.random() < 0.5 ? y *= Math.random() + 1 : y
+            var o = new Entity({
+            x: element.x + x,
+            y: element.y + y
+            })
+            o.define(Class['poisonEffect'])
+        }
+        if (element.poisoned && element.type == 'tank') {
+            let x = element.size + 10
+            let y = element.size + 10
+            Math.random() < 0.5 ? x *= -1 : x
+            Math.random() < 0.5 ? y *= -1 : y
+            Math.random() < 0.5 ? x *= Math.random() + 1 : x
+            Math.random() < 0.5 ? y *= Math.random() + 1 : y
+            var o = new Entity({
+            x: element.x + x,
+            y: element.y + y
+            })
+            o.define(Class['poisonEffect'])
+           
+            if (!element.invuln) {
+              element.health.amount -= element.health.max / (55 - element.poisonLevel)
+              element.shield.amount -= element.shield.max / (35 - element.poisonLevel)
+            }
+           
+            element.poisonTime -= 1
+            if (element.poisonTime <= 0) element.poisoned = false
+           
+            if (element.health.amount <= 0 && element.poisonedBy != undefined && element.poisonedBy.skill != undefined) {
+              element.poisonedBy.skill.score += Math.ceil(util.getJackpot(element.poisonedBy.skill.score));
+              element.poisonedBy.sendMessage('You killed ' + element.name + ' using poison.');
+              element.sendMessage('You have been killed by ' + element.poisonedBy.name + ' due to poison.')
+            }
+          }
+      }
+    )}
+    return () => {
+        // run the poison
+        poison()
+    };
+})();
 // A less important loop. Runs at an actual 5Hz regardless of game speed.
 var maintainloop = (() => {
     // Place obstacles
@@ -4450,8 +4918,8 @@ var maintainloop = (() => {
                 names = [],
                 bois = [Class.egg],
                 n = 0,
-                begin = 'yo some shit is about to move to a lower position',
-                arrival = 'Something happened lol u should probably let CX know this broke',
+                begin = 'Oh yo, crap is about to move to some lower position',
+                arrival = 'Oof, something happened, notify Cupcake and/or AC this broke',
                 loc = 'norm';
             let spawn = () => {
                 let spot, m = 0;
@@ -4471,13 +4939,13 @@ var maintainloop = (() => {
                     names = ran.chooseBossName(nameClass, number);
                     i = 0;
                     if (n === 1) {
-                        begin = 'A visitor is coming.';
+                        begin = 'Boss approching..';
                         arrival = names[0] + ' has arrived.'; 
                     } else {
-                        begin = 'Visitors are coming.';
+                        begin = 'Multiple bosses are approching..';
                         arrival = '';
                         for (let i=0; i<n-2; i++) arrival += names[i] + ', ';
-                        arrival += names[n-2] + ' and ' + names[n-1] + ' have spawned.';
+                        arrival += names[n-2] + ' and ' + names[n-1] + ' have arrived.';
                     }
                 },
                 spawn: () => {
@@ -4492,22 +4960,21 @@ var maintainloop = (() => {
             };
         })();
         return census => {
-            if (timer > 0 && ran.dice(16000 - timer)) {
+            if (timer > 6000 && ran.dice(16000 - timer)) {
                 util.log('[SPAWN] Preparing to spawn...');
                 timer = 0;
                 let choice = [];
                 switch (ran.chooseChance(40, 1)) {
                     case 0: 
-                        choice = [[Class.elite_cruiser], 5, 'a', 'nest'];
+                        choice = [[Class.elite_destroyer], 2, 'a', 'nest'];
                         break;
                     case 1: 
                         choice = [[Class.palisade], 1, 'castle', 'norm']; 
-                        sockets.broadcast('A strange trembling...');
-                        sockets.broadcast('It seems the Rogue Palisade is coming..')
+                        sockets.broadcast('Yo, you are gonna wanna leave the nest, there is a strange trembling');
                         break;
                 }
                 boss.prepareToSpawn(...choice);
-                setTimeout(boss.spawn, 0);
+                setTimeout(boss.spawn, 3000);
                 // Set the timeout for the spawn functions
             } else if (!census.miniboss) timer++;
         };
@@ -4525,7 +4992,7 @@ var maintainloop = (() => {
     // The NPC function
     let makenpcs = (() => {
         // Make base protectors if needed.
-            /*let f = (loc, team) => { 
+  let f = (loc, team) => { 
                 let o = new Entity(loc);
                     o.define(Class.baseProtector);
                     o.team = -team;
@@ -4533,7 +5000,7 @@ var maintainloop = (() => {
             };
             for (let i=1; i<5; i++) {
                 room['bas' + i].forEach((loc) => { f(loc, i); }); 
-            }*/
+            }
         // Return the spawning function
         let bots = [];
         return () => {
@@ -4551,7 +5018,7 @@ var maintainloop = (() => {
             // Spawning
             spawnCrasher(census);
             spawnBosses(census);
-            /*/ Bots
+            // Bots
                 if (bots.length < c.BOTS) {
                     let o = new Entity(room.random());
                     o.color = 17;
@@ -4571,7 +5038,7 @@ var maintainloop = (() => {
                         o.skill.maintain();
                     }
                 });
-            */
+            
         };
     })();
     // The big food function
@@ -4585,8 +5052,9 @@ var maintainloop = (() => {
                 case 1: a = Class.square; break;
                 case 2: a = Class.triangle; break;
                 case 3: a = Class.pentagon; break;
-                case 4: a = Class.hugePentagon; break;
-                case 5: a = Class.hexagon; break;
+                case 4: a = Class.autoAlphaPent; break;
+                case 5: a = Class.bigPentagon; break;
+                case 6: a = Class.hugePentagon; break;
                 default: throw('bad food level');
             }
             if (a !== {}) {
@@ -4841,41 +5309,25 @@ var speedcheckloop = (() => {
 
 /** BUILD THE SERVERS **/  
 // Turn the server on
-let server = http.createServer((req, res) => {
-  let { pathname } = url.parse(req.url)
-  switch (pathname) {
-    case '/':
-      res.writeHead(200)
-      res.end('<!DOCTYPE html><h3>Arras</h3>')
-    break
-    case '/mockups.json':
-      res.setHeader('Access-Control-Allow-Origin', '*')
-      res.writeHead(200)
-      res.end(mockupJsonData)
-    break
-    default:
-      res.writeHead(404)
-      res.end()
-  }
-}).listen(process.env.PORT || 8080)
-
-let websockets = (() => {
+var server = http.createServer(app);
+var websockets = (() => {
     // Configure the websocketserver
-    let config = { server: server }
-        server.listen(8080, function httpListening() {
-            util.log((new Date()) + ". Joint HTTP+Websocket server turned on, listening on port "+server.address().port + ".")
-        })
-    /*if (c.servesStatic) {
+    let config = { server: server };
+    if (c.servesStatic) {
+        server.listen(c.port, function httpListening() {
+            util.log((new Date()) + ". Joint HTTP+Websocket server turned on, listening on port "+server.address().port + ".");
+        });
     } else {
-        config.port = 8080; 
-        util.log((new Date()) + 'Websocket server turned on, listening on port ' + 8080 + '.'); 
-    }*/
+        config.port = c.port; 
+        util.log((new Date()) + 'Websocket server turned on, listening on port ' + c.port + '.'); 
+    }
     // Build it
-    return new WebSocket.Server(config)
+    return new WebSocket.Server(config);
 })().on('connection', sockets.connect); 
 
 // Bring it to life
 setInterval(gameloop, room.cycleSpeed);
+setInterval(poisonLoop, room.cycleSpeed * 7)
 setInterval(maintainloop, 200);
 setInterval(speedcheckloop, 1000);
 
@@ -4905,3 +5357,227 @@ process.on("SIGINT", () => {
         }, 17000);
     }
 });
+
+
+
+const Eris = require('eris');
+const bot = new Eris('NDc4Njk5NjU4ODE5MTQxNjQ1.DlPUuQ.0BUXVAoS8b7JuLk-XP5QfcDL5ho');
+ 
+bot.on('ready', () => {                             
+    console.log('\nFinalized discord bot existence. Initiating server startup.\n');    
+    var canLogToDiscord = true
+});
+ 
+var unauth = '```patch\n- ERROR: UNATHORIZED USER```'
+var mliststring = ''
+var mliststring2 = ''
+/*mlist.forEach(function(element) {
+  if (mliststring.length < 1970) {
+    mliststring += element += ', ';
+  } else {
+    mliststring2 += element += ', '
+  }
+});*/
+
+function parse(input) {
+  let out =  input.split(" "); 
+  return out
+}
+
+bot.on('messageCreate', (msg) => {
+  try {
+    if (msg.content.startsWith("ac-select ")) {
+      if (process.env.ISONGLITCH == undefined) {
+      let sendError = true
+      let lookfor = msg.content.split(">select ").pop()
+      entities.forEach(function(element) {
+        if (typeof element.sendMessage == "function" && element.name == lookfor) {
+          sendError = false
+          bot.createMessage(msg.channel.id, String(element.name + '\nTank: ' + element.label + '\nId: ' + element.id + '\nAlpha: ' + element.alpha + '\nColor: ' + element.blend.color + '\nMax Health: '  + element.health.max + '\nCurrent Health: '  + element.health.amount + '\nIs Invulnerable: ' + element.invuln + '\nScore: ' + element.photo.score + '\nLevel: ' + element.skill.level));
+        }
+      })
+      if (sendError) {
+        bot.createMessage(msg.channel.id, "Was unable to find an entity by that name");
+      }
+    }}
+    if (msg.content == 'ac-ping') {
+      bot.createMessage(msg.channel.id, 'Pong!\n' + "\nConnections amount: " + global.extPlayers + "\nRunning on glitch: " + process.env.ISONGLITCH + "\nDirectory: " + __dirname + "\nFile name: " + __filename);
+    }
+    if (msg.content == 'ac-list') {
+      //if (process.env.ISONGLITCH == undefined) {
+     // bot.createMessage(msg.channel.id, mliststring);
+//bot.createMessage(msg.channel.id, mliststring2);
+    }//}
+    if (msg.content.includes('ac-help')) {
+      if (process.env.ISONGLITCH == undefined) {
+        bot.createMessage(msg.channel.id, '***COMMANDS*** \nPrefix: ac- \n \n**ping**  -  tells u if the server is running\n**broadcast** *<message>*  -  broadcasts a message \n**list**  -  Lists all tanks as their internal names\n**query** *<internalname>*  -  returns some data about a tank (use list first to get tank names that this will accept)\n**select** *<name>*  -  returns some data about in-game users\n**players**  -  list in-game players\n**stat** *<id> <path to stat> <new value>*  -  modifies a stat (Authorization required)');
+    }}
+    if (msg.content.includes('ac(admin[help])')) {
+      if (process.env.ISONGLITCH == undefined) {
+        bot.createMessage(msg.channel.id, '***SUPER SECRET ADMIN COMMANDS*** \nPrefix: ac(admin[command]) \nnote: use brackets and parentheses \n \n**kill**: kills server \n**banish**: banishes a player, forcing them to reload');
+    }}
+    if (msg.content == 'ac(admin[kill])') {
+      if (msg.author.id == 181829457852628993 || 340270483838599168) {
+        console.log("\n ...SERVER TERMINATED BY AN AUTHORIZED USER... \n")
+        bot.createMessage(msg.channel.id, 'Terminating...');
+        process.emit("SIGINT")
+      } else {
+        console.log("Unauthorized user", msg.author.username, "tried to end server")
+        bot.createMessage(msg.channel.id, unauth);
+      }
+    }
+    if (msg.content.startsWith('ac-broadcast')) {
+      if (msg.author.id == 181829457852628993 || 340270483838599168) {
+        if (process.env.ISONGLITCH == undefined) {
+        sockets.broadcast(msg.content.split("ac-broadcast").pop() + " - " + msg.author.username)
+        bot.createMessage(msg.channel.id, 'Message Broadcasted and rendered.');
+      }} else {
+        console.log("Unauthorized user", msg.author.username, "tried to broadcast a message")
+        bot.createMessage(msg.channel.id, unauth);
+      }
+    }
+    /*if (msg.content.startsWith('ac-query')) {
+      if (process.env.ISONGLITCH == undefined) {
+        let output = ''
+        var query = msg.content.split(">query ").pop()
+        try {
+          var botreturn = eval('Class.' + query);
+          for (var key in botreturn) {
+            if (output.length > 500) {console.log(output.length); bot.createMessage(msg.channel.id, output); output = ''}
+            output += String(key) + ': ' + eval('Class.' + query + '.' + String(key)) + '\n'
+            var returned = typeof eval('Class.' + query + '.' + String(key))
+            if (returned == 'object') {
+              for (var key2 in eval('Class.' + query + '.' + String(key))) {
+                  if (key2 != 'remove') {
+                    try {
+                      output += "^ " + String(key2) + ': ' + eval('Class.' + query + '.' + String(key) + '[' + String(key2) + ']') + '\n'
+                      var returned = typeof eval('Class.' + query + '.' + String(key) + '[' + String(key2) + ']')
+                      var returnedobj = eval('Class.' + query + '.' + String(key) + '[' + String(key2) + ']')
+                    } catch(err) {
+                      output += "^ " + String(key2) + ': ' + eval('Class.' + query + '.' + String(key) + '.' + String(key2)) + '\n'
+                      var returned = typeof eval('Class.' + query + '.' + String(key) + '.' + String(key2))
+                      var returnedobj = eval('Class.' + query + '.' + String(key) + '.' + String(key2))
+                    }
+                    if (returned == 'object') {
+                      for (var key3 in returnedobj) {
+                        if (key3 != 'remove') {
+                          try {
+                            output += "^ ^ " + String(key3) + ': ' + eval('Class.' + query + '.' + String(key) + '[' + String(key2) + ']' + '[' + String(key3) + ']') + '\n'
+                          } catch(err) {
+                            try {
+                              output += "^ ^ " + String(key3) + ': ' + eval('Class.' + query + '.' + String(key) + '[' + String(key2) + ']' + '.' + String(key3)) + '\n'
+                            } catch(err) {
+                              try {
+                                output += "^ ^ " + String(key3) + ': ' + eval('Class.' + query + '.' + String(key) + '.' + String(key2) + '[' + String(key3) + ']') + '\n'
+                              } catch(err) {
+                                output += "^ ^ " + String(key3) + ': ' + eval('Class.' + query + '.' + String(key) + '.' + String(key2) + '.' + String(key3)) + '\n'
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          } catch(err) {
+            bot.createMessage(msg.channel.id, String(err));
+          }
+        bot.createMessage(msg.channel.id, output);
+      }}
+    if (msg.content.startsWith('k!summon ')) {
+      if (msg.author.id == 181829457852628993) {
+        var spawnClass = msg.content.split("k!summon ").pop().substr(0, 3)
+        console.log(msg.content.split("k!summon ").pop().substr(0, 3))
+        var type = msg.content.split(" ").pop()
+        if (spawnClass == 'bot') {
+          botSpawn = type
+          bot.createMessage(msg.channel.id, "Next bot will be a " + type);
+        } else if (spawnClass == 'food') {
+          
+        } else {
+          bot.createMessage(msg.channel.id, "Was unable to complete request, unknown summon type: " + spawnClass);
+        }
+      } else {
+        console.log("Unauthorized user", msg.author.username, "tried to broadcast")
+        bot.createMessage(msg.channel.id, unauth);
+      }
+    }*/
+  if (msg.content.startsWith("ac(admin[banish]) ")) {
+      if (process.env.ISONGLITCH == undefined) {
+      if (msg.author.id == 181829457852628993 || 340270483838599168) {
+        let sendError = true
+        let lookfor = msg.content.split("ac(admin[banish]) ").pop()
+        entities.forEach(function(element) {
+          if (element.id == lookfor) {
+            sendError = false
+            element.x = NaN
+            element.sendMessage('YOU HAVE BEEN BANISHED, FOOL')
+            setTimeout(() => {
+            element.sendMessage('Reload to get out :P')}, 4000)
+            bot.createMessage(msg.channel.id, "U͟S҉҉E̶͞R ̵̢B̸Á̛NÌ̸̡S̡͠HE̵D̨͟ ͏̸T̵͞͝Ơ T̴̴̢H̷̨E̷̢͡ `NaN` ̧͡ẀO͏҉̵R҉̡L̢D");
+          }
+        })
+        if (sendError) {
+          bot.createMessage(msg.channel.id, "Was unable to find an entity by the id: " + lookfor);
+        }
+      } else {
+        bot.createMessage(msg.channel.id, unauth);
+      }
+    }}
+  if (msg.content == 'ac-players') {
+    let output = ''
+    entities.forEach(function(element) {
+    if (typeof element.sendMessage == "function" && element.name != '') {
+        output += String(element.name + '  -  ' + element.id + '\n')
+    }
+    })
+    bot.createMessage(msg.channel.id, output)}
+  if (msg.content.startsWith('ac-stat ')) {
+    if (msg.author.id == 181829457852628993 || 340270483838599168 || 350336602956103683) {
+    let s_command = parse(msg.content)
+    let s_lookForId = s_command[1]
+    let s_statpath = s_command[2]
+    let s_newvalue = s_command[3]
+    entities.forEach(function(element) {
+    if (element.id == s_lookForId) {
+      try {
+        eval('element' + s_statpath + ' = ' + s_newvalue)
+      } catch(err) {
+        eval('element' + s_statpath + ' = "' + s_newvalue + '"')
+      }
+      bot.createMessage(msg.channel.id, "Value set to " + String(eval('element' + s_statpath)));
+    }})
+  } else {
+    bot.createMessage(msg.channel.id, unauth);
+  }}
+  if (msg.content.startsWith('ac-define ')) {
+  let printerror = true
+  let command = parse(msg.content)
+  let inputid = command[1]
+  let inputclass = command[2]
+  if (msg.author.id == 181829457852628993 || 340270483838599168) {
+  if (eval(Class[inputclass]) != undefined) {
+    entities.filter(r => r.id == inputid)[0].define(Class[inputclass])
+    printerror = false
+    bot.createMessage(msg.channel.id, 'Defined user as Class.' + inputclass);
+  } else {
+    bot.createMessage(msg.channel.id, inputclass + ' is not a valid tank');
+  }
+  if (printerror) {
+    bot.createMessage(msg.channel.id, "Couldn't find any users by the id: " + inputid);
+  }
+  } else {
+    bot.createMessage(msg.channel.id, unauth);
+  }}
+} catch(err) { // log the error in chat
+  bot.createMessage(msg.channel.id, String(err));
+}});
+ 
+bot.editStatus('online', {
+  name: 'Type ac-help for commands - ',
+  type: 0
+});
+
+bot.connect();
